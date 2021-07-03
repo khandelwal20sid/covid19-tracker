@@ -1,23 +1,20 @@
 import React from "react";
-import { MapContainer, TileLayer } from "react-leaflet";
-import "./Map.css";
-// import { showDataOnMap } from "../util";
 
-function Map({ countries, casesType, center, zoom }) {
+function Map() {
   return (
-    <div className="map">
-      <MapContainer
-        className="markercluster-map"
-        center={[51.0, 19.0]}
-        zoom={4}
-        maxZoom={18}
-      >
-        <TileLayer
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-          attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-        />
-        {/* {showDataOnMap(countries, casesType)} */}
-      </MapContainer>
+    <div>
+      <h2>Map</h2>
+      <div>
+        <iframe
+          width="100%"
+          height="450"
+          frameborder="0"
+          scrolling="no"
+          marginheight="0"
+          marginwidth="0"
+          src="https://maps.google.com/maps?width=100%25&amp;height=450&amp;hl=en&amp;q=world+()&amp;t=&amp;z=2&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"
+        ></iframe>       
+      </div>
     </div>
   );
 }
