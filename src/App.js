@@ -32,6 +32,8 @@ function App() {
   const onCountryChange = (e) => {
     const CountryCode = e.target.value;
     setSelectedCountry(CountryCode);
+
+    const url = CountryCode == "worldwide" ? "https://disease.sh/v3/covid-19/all" : `https://disease.sh/v3/covid-19/countries/${CountryCode}`
   };
 
   return (
