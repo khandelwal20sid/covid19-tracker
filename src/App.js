@@ -92,24 +92,37 @@ function App() {
 
         <div className="app_stats">
           <InfoBox
+            isRed
+            active={casesType == "cases"}
             onClick={(e) => setCasesType("cases")}
             title="Coronvirus Cases"
             cases={countryInfo.todayCases}
             num={countryInfo.cases}
           />
           <InfoBox
+            active={casesType == "recovered"}
             onClick={(e) => setCasesType("recovered")}
             title="Recovered"
             cases={countryInfo.todayRecovered}
             num={countryInfo.recovered}
           />
           <InfoBox
+            isRed
+            active={casesType == "deaths"}
             onClick={(e) => setCasesType("deaths")}
             title="Deaths"
             cases={countryInfo.todayDeaths}
             num={countryInfo.deaths}
           />
         </div>
+
+        <marquee className="marquee">
+          <h4>
+            Wear a mask | Stay 6 feet away from others | Get Vaccinated | Avoid
+            crowds and poorly ventilated spaces | Wash your hands often | Clean
+            and disinfect | Monitor your health daily | Stay Safe | --Siddharth Khandelwal
+          </h4>
+        </marquee>
 
         <Map
           countries={mapCountries}
@@ -123,8 +136,8 @@ function App() {
         <CardContent>
           <h3>Live Cases by Country</h3>
           <Table countries={listData} />
-          <h3>Worldwise new {casesType}</h3>
-          <SideGraph casesType={casesType} />
+          <h3 className="sideGraph_title">Worldwise new {casesType}</h3>
+          <SideGraph className="app_graph" casesType={casesType} />
         </CardContent>
       </Card>
     </div>

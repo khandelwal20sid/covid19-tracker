@@ -3,17 +3,19 @@
 }
 
 body{
-  background-color: #f5f6fa;
+  background-color: 	#f4f4f8;
+  /* background-color: #2B2B2F; */
+  overflow: hidden;
 }
 
 .app {
   display: flex;
   justify-content: space-evenly;
-  padding: 20px;
+  padding: 20px;  
 }
 
 .app_leftSide{
-  flex: 0.9;
+  flex: 0.9; 
 }
 
 .app_header {
@@ -23,15 +25,70 @@ body{
   margin-bottom: 20px;
 }
 
+.app_header > h1 {
+  color: #fe4a49;
+}
+
+.MuiSelect-outlined.MuiSelect-outlined{
+  background-color: #fff;
+}
+
+.marquee {
+  margin-top: 10px;
+  color:  #2ab7ca;
+}
+
 .app_stats {
   display: flex;
   justify-content: space-between;
 }
 
+.app_rightSide{
+  display: flex;
+  flex-direction: column;
+}
 
+.MuiCardContent-root > h3 {
+  padding: 10px;
+  text-decoration: underline;
+}
+
+.app_rightSide .MuiCardContent-root{
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.sideGraph_title {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.app_graph {
+flex-grow: 1;
+}
 
 @media (max-width: 990px) {
+  body{
+    overflow: auto;
+  }
+
   .app{
+    flex-direction: column;
+  }
+
+  .app_leftSide{  
+    padding-bottom: 20px;
+  }
+}
+
+@media (max-width: 600px) {
+
+  .app_leftSide{
+    flex: 0.9;   
+  }
+  
+  .app_stats {
     flex-direction: column;
   }
 }

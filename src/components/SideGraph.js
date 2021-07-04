@@ -3,14 +3,16 @@ import { Line } from "react-chartjs-2";
 import numeral from "numeral";
 
 const options = {
-  legend: {
-    display: false,
+  plugins: {
+    legend: {
+      display: false,
+    },
   },
   elements: {
     point: {
       radius: 0,
     },
-  }, 
+  },
   maintainAspectRatio: false,
   tooltips: {
     mode: "index",
@@ -49,7 +51,7 @@ const options = {
 const buildChartData = (data, casesType) => {
   let chartData = [];
   let lastDataPoint;
-  for (let date in data.cases) {    
+  for (let date in data.cases) {
     if (lastDataPoint) {
       let newDataPoint = {
         x: date,
@@ -81,25 +83,25 @@ function SideGraph({ casesType, ...props }) {
 
     fetchData();
   }, [casesType]);
- let Gdatasets
+  let Gdatasets;
   if (casesType != "recovered") {
     Gdatasets = [
       {
         fill: true,
-        backgroundColor: "rgba(204, 16, 52, 0.5)",
-        borderColor: "#CC1034",
+        backgroundColor: "rgba(254, 74, 73, 0.5)",
+        borderColor: "#fe4a49",
         data: data,
       },
-    ]
+    ];
   } else {
     Gdatasets = [
       {
         fill: true,
-        backgroundColor: "rgba(125, 215, 29, 0.5)",
-        borderColor: "#7dd71d",
+        backgroundColor: "rgba(73, 254, 74, 0.5)",
+        borderColor: "#49fe4a",
         data: data,
       },
-    ]
+    ];
   }
 
   return (
@@ -107,7 +109,7 @@ function SideGraph({ casesType, ...props }) {
       {data?.length > 0 && (
         <Line
           data={{
-            datasets:Gdatasets
+            datasets: Gdatasets,
           }}
           options={options}
         />
