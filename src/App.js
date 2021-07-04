@@ -12,7 +12,7 @@ import Map from "./components/Map";
 import Table from "./components/Table";
 import SideGraph from "./components/SideGraph";
 import { sortData } from "./util";
-import "leaflet/dist/leaflet.css"
+import "leaflet/dist/leaflet.css";
 
 function App() {
   const [countries, setCountries] = useState([]);
@@ -63,7 +63,9 @@ function App() {
       .then((data) => {
         setSelectedCountry(CountryCode);
         setCountryInfo(data);
-        setMapCenter([data.countryInfo.lat, data.countryInfo.long]);
+        CountryCode === "worldwide"
+          ? setMapCenter([34.80746, -40.4796])
+          : setMapCenter([data.countryInfo.lat, data.countryInfo.long]);
         setMapZoom(4);
       });
   };
@@ -90,16 +92,19 @@ function App() {
 
         <div className="app_stats">
           <InfoBox
+            onClick={(e) => setCasesType("cases")}
             title="Coronvirus Cases"
             cases={countryInfo.todayCases}
             num={countryInfo.cases}
           />
           <InfoBox
+            onClick={(e) => setCasesType("recovered")}
             title="Recovered"
             cases={countryInfo.todayRecovered}
             num={countryInfo.recovered}
           />
           <InfoBox
+            onClick={(e) => setCasesType("deaths")}
             title="Deaths"
             cases={countryInfo.todayDeaths}
             num={countryInfo.deaths}
@@ -118,8 +123,8 @@ function App() {
         <CardContent>
           <h3>Live Cases by Country</h3>
           <Table countries={listData} />
-          <h3>Worldwise new cases</h3>
-          <SideGraph />
+          <h3>Worldwise new {casesType}</h3>
+          <SideGraph casesType={casesType} />
         </CardContent>
       </Card>
     </div>

@@ -3,14 +3,14 @@ import { Line } from "react-chartjs-2";
 import numeral from "numeral";
 
 const options = {
-    legend: {
-    display: false,  
+  legend: {
+    display: false,
   },
   elements: {
     point: {
       radius: 0,
     },
-  },  
+  }, 
   maintainAspectRatio: false,
   tooltips: {
     mode: "index",
@@ -68,12 +68,12 @@ function SideGraph({ casesType, ...props }) {
 
   useEffect(() => {
     const fetchData = async () => {
-      await fetch("https://disease.sh/v3/covid-19/historical/all?lastdays=120")
+      await fetch("https://disease.sh/v3/covid-19/historical/all?lastdays=30")
         .then((response) => {
           return response.json();
         })
         .then((data) => {
-          let chartData = buildChartData(data, "cases");
+          let chartData = buildChartData(data, casesType);
           setData(chartData);
           console.log("added");
         });
@@ -81,19 +81,33 @@ function SideGraph({ casesType, ...props }) {
 
     fetchData();
   }, [casesType]);
+ let Gdatasets
+  if (casesType != "recovered") {
+    Gdatasets = [
+      {
+        fill: true,
+        backgroundColor: "rgba(204, 16, 52, 0.5)",
+        borderColor: "#CC1034",
+        data: data,
+      },
+    ]
+  } else {
+    Gdatasets = [
+      {
+        fill: true,
+        backgroundColor: "rgba(125, 215, 29, 0.5)",
+        borderColor: "#7dd71d",
+        data: data,
+      },
+    ]
+  }
 
   return (
     <div className={props.className}>
       {data?.length > 0 && (
         <Line
           data={{
-            datasets: [
-              {
-                backgroundColor: "rgba(204, 16, 52, 0.5)",
-                borderColor: "#CC1034",
-                data: data,
-              },
-            ],
+            datasets:Gdatasets
           }}
           options={options}
         />
