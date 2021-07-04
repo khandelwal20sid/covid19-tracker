@@ -1,20 +1,17 @@
 import React from "react";
+import { MapContainer as LeafletMap, TileLayer } from "react-leaflet";
+import "./Map.css";
 
-function Map() {
+function Map({ countries, casesType, center, zoom }) {
   return (
-    <div>
-      <h2>Map</h2>
-      <div className="googleMaps_frame">
-        <iframe          
-          width="100%"
-          height="450"
-          frameborder="0"
-          scrolling="no"
-          marginheight="0"
-          marginwidth="0"
-          src="https://maps.google.com/maps?width=100%25&amp;height=450&amp;hl=en&amp;q=world+()&amp;t=&amp;z=2&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"
-        ></iframe>
-      </div>
+    <div className="map">
+      <LeafletMap center={center} zoom={zoom}>
+        <TileLayer
+          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+        />
+        {/* {showDataOnMap(countries, casesType)} */}
+      </LeafletMap>
     </div>
   );
 }
